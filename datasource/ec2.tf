@@ -19,12 +19,11 @@
 #   records = [var.instance_names[count.index] == "web"  ?  aws_instance.web[count.index].public_ip : aws_instance.web[count.index].private_ip]
 # }
 
+
 resource "aws_instance" "web" {
-  ami           = var.ami-id #devops-practice
-  instance_type = local.instance_type
+  ami           = data.aws_ami.Centos8.id #devops-practice
+  instance_type = "t2.micro"
   tags = {
-    Name = "locals"
+    Name = "Datasource"
   }
 }
-
-         
